@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React from "react";
-import "@/css/components/layout/row.css";
+import "../../css/row.css";
 
 const alignMap = {
     left: "flex-start",

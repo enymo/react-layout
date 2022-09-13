@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React from "react";
-import "@/css/components/layout/column.css";
+import "../../css/components/layout/column.css";
 
 export function Column({className, gap = "20px", flex, children}: {
     className?: string,
