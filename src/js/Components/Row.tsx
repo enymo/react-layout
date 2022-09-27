@@ -28,7 +28,7 @@ export function Row({
     gap?: string,
     flex?: number,
     align?: "left" | "right" | "center" | "space",
-    verticalAlign: "top" | "center" | "bottom" | "stretch"
+    verticalAlign?: "top" | "center" | "bottom" | "stretch"
     children: React.ReactNode
 }) {
     return (

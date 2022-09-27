@@ -15,8 +15,8 @@ export function Constraint({
 }) {
     return (
         <div className={className} style={{
-            ...(width ? {[mode === "fixed" ? "width" : `${mode}-width`]: width} : {}),
-            ...(height ? {[mode === "fixed" ? "height" : `${mode}-height`]: height} : {})
+            ...(width ? {[mode === "fixed" ? "width" : `${mode}Width`]: width} : {}),
+            ...(height ? {[mode === "fixed" ? "height" : `${mode}Height`]: height} : {})
         }}>
             {children}
         </div>
