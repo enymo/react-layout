@@ -25,7 +25,7 @@ export function Row({
     children
 }: {
     className?: string,
-    gap: string,
+    gap?: string,
     flex?: number,
     align?: "left" | "right" | "center" | "space",
     verticalAlign?: "top" | "center" | "bottom" | "stretch"
