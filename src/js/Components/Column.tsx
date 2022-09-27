@@ -1,10 +1,10 @@
 import classNames from "classnames";
 import React from "react";
-import "../../css/components/layout/column.css";
+import "../../css/column.css";
 
-export function Column({className, gap = "20px", flex, children}: {
+export function Column({className, gap, flex, children}: {
     className?: string,
-    gap?: string,
+    gap: string,
     flex?: number,
     children: React.ReactNode
 }) {
