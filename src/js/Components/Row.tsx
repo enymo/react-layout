@@ -23,6 +23,7 @@ export function Row({
     align = "left",
     verticalAlign = "stretch",
     vAlign,
+    padding,
     children
 }: {
     className?: string,
@@ -31,7 +32,8 @@ export function Row({
     align?: "left" | "right" | "center" | "space",
     /** @deprecated Use vAlign instead */
     verticalAlign?: "top" | "center" | "bottom" | "stretch",
-    vAlign?: "top" | "center" | "bottom" | "stretch"
+    vAlign?: "top" | "center" | "bottom" | "stretch",
+    padding?: string,
     children: React.ReactNode
 }) {
     return (
@@ -39,7 +41,8 @@ export function Row({
             justifyContent: alignMap[align],
             alignItems: verticalAlignMap[vAlign ?? verticalAlign],
             gap,
-            flex
+            flex,
+            padding
         }}>
             {children}
         </div>

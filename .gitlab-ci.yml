@@ -6,7 +6,10 @@ build:
     - tags
   artifacts:
     paths:
-      - ./dist
+      - ./
+    exclude:
+      - .git
+      - .git/**/*
   script:
     - npm i --no-audit
     - npm run build
