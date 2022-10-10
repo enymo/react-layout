@@ -22,19 +22,22 @@ export function Row({
     flex,
     align = "left",
     verticalAlign = "stretch",
+    vAlign,
     children
 }: {
     className?: string,
     gap?: string,
     flex?: number,
     align?: "left" | "right" | "center" | "space",
-    verticalAlign?: "top" | "center" | "bottom" | "stretch"
+    /** @deprecated Use vAlign instead */
+    verticalAlign?: "top" | "center" | "bottom" | "stretch",
+    vAlign?: "top" | "center" | "bottom" | "stretch"
     children: React.ReactNode
 }) {
     return (
         <div className={classNames("layout-row", className)} style={{
             justifyContent: alignMap[align],
-            alignItems: verticalAlignMap[verticalAlign],
+            alignItems: verticalAlignMap[vAlign ?? verticalAlign],
             gap,
             flex
         }}>
