@@ -1,5 +1,8 @@
 import React from "react";
 
+/**
+ * @deprecated 
+ */
 export function Constraint({
     className,
     width,

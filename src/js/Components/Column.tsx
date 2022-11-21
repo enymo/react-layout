@@ -16,20 +16,24 @@ const verticalAlignMap = {
     space: "space-between"
 }
 
-export function Column({className, gap, flex, padding, align = "top", hAlign = "stretch", children}: {
+export function Column({className, align = "top", hAlign = "stretch", children, ...props}: {
     className?: string,
     gap?: string,
     flex?: number,
     padding?: string,
+    width?: string,
+    height?: string,
+    minWidth?: string,
+    minHeight?: string,
+    maxWidth?: string,
+    maxHeight?: string,
     align?: keyof typeof verticalAlignMap,
     hAlign?: keyof typeof horizontalAlignMap
     children: React.ReactNode
 }) {
     return (
         <div className={classNames("layout-column", className)} style={{
-            gap,
-            flex,
-            padding,
+            ...props,
             justifyContent: verticalAlignMap[align],
             alignItems: horizontalAlignMap[hAlign]
         }}>

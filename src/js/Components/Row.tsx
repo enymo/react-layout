@@ -18,13 +18,11 @@ const verticalAlignMap = {
 
 export function Row({
     className,
-    gap,
-    flex,
     align = "left",
     verticalAlign = "stretch",
     vAlign,
-    padding,
-    children
+    children,
+    ...props
 }: {
     className?: string,
     gap?: string,
@@ -34,15 +32,19 @@ export function Row({
     verticalAlign?: "top" | "center" | "bottom" | "stretch",
     vAlign?: "top" | "center" | "bottom" | "stretch",
     padding?: string,
+    width?: string,
+    height?: string,
+    minWidth?: string,
+    minHeight?: string,
+    maxWidth?: string,
+    maxHeight?: string,
     children: React.ReactNode
 }) {
     return (
         <div className={classNames("layout-row", className)} style={{
             justifyContent: alignMap[align],
             alignItems: verticalAlignMap[vAlign ?? verticalAlign],
-            gap,
-            flex,
-            padding
+            ...props
         }}>
             {children}
         </div>
