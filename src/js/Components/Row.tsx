@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 import "../../css/row.css";
+import { useLayout } from "../Hooks/LayoutContext";
 
 const alignMap = {
     left: "flex-start",
@@ -21,6 +22,7 @@ export function Row({
     align = "left",
     verticalAlign = "stretch",
     vAlign,
+    gap,
     children,
     ...props
 }: {
@@ -40,10 +42,13 @@ export function Row({
     maxHeight?: string,
     children: React.ReactNode
 }) {
+    const {row: context} = useLayout();
+
     return (
         <div className={classNames("layout-row", className)} style={{
-            justifyContent: alignMap[align],
-            alignItems: verticalAlignMap[vAlign ?? verticalAlign],
+            gap: gap ?? context.gap,
+            justifyContent: alignMap[align ?? context.align],
+            alignItems: verticalAlignMap[vAlign ?? verticalAlign ?? context.vAlign],
             ...props
         }}>
             {children}

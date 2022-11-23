@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 import "../../css/column.css";
+import { useLayout } from "../Hooks/LayoutContext";
 
 const horizontalAlignMap = {
     left: "flex-start",
@@ -16,7 +17,7 @@ const verticalAlignMap = {
     space: "space-between"
 }
 
-export function Column({className, align = "top", hAlign = "stretch", children, ...props}: {
+export function Column({className, align = "top", hAlign = "stretch", gap, children, ...props}: {
     className?: string,
     gap?: string,
     flex?: number,
@@ -31,11 +32,14 @@ export function Column({className, align = "top", hAlign = "stretch", children, 
     hAlign?: keyof typeof horizontalAlignMap
     children: React.ReactNode
 }) {
+    const {column: context} = useLayout();
+
     return (
         <div className={classNames("layout-column", className)} style={{
             ...props,
-            justifyContent: verticalAlignMap[align],
-            alignItems: horizontalAlignMap[hAlign]
+            gap: gap ?? context.gap,
+            justifyContent: verticalAlignMap[align ?? context.align],
+            alignItems: horizontalAlignMap[hAlign ?? context.hAlign]
         }}>
             {children}
         </div>
