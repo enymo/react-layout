@@ -23,6 +23,7 @@ export function Row({
     verticalAlign = "stretch",
     vAlign,
     gap,
+    style,
     children,
     ...props
 }: {
@@ -40,6 +41,7 @@ export function Row({
     minHeight?: string,
     maxWidth?: string,
     maxHeight?: string,
+    style?: React.CSSProperties,
     children: React.ReactNode
 }) {
     const {row: context} = useLayout();
@@ -49,7 +51,8 @@ export function Row({
             gap: gap ?? context.gap,
             justifyContent: alignMap[align ?? context.align],
             alignItems: verticalAlignMap[vAlign ?? verticalAlign ?? context.vAlign],
-            ...props
+            ...props,
+            ...style
         }}>
             {children}
         </div>
