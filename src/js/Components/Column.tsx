@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React from "react";
+import React, { forwardRef } from "react";
 import "../../css/column.css";
 import { useLayout } from "../Hooks/LayoutContext";
 
@@ -17,7 +17,7 @@ const verticalAlignMap = {
     space: "space-between"
 }
 
-export function Column({className, align = "top", hAlign = "stretch", gap, style, children, ...props}: {
+export const Column = forwardRef<HTMLDivElement, {
     className?: string,
     gap?: string,
     flex?: number,
@@ -30,13 +30,13 @@ export function Column({className, align = "top", hAlign = "stretch", gap, style
     maxHeight?: string,
     style?: React.CSSProperties,
     align?: keyof typeof verticalAlignMap,
-    hAlign?: keyof typeof horizontalAlignMap
+    hAlign?: keyof typeof horizontalAlignMap,
     children: React.ReactNode
-}) {
+}>(({className, align = "top", hAlign = "stretch", gap, style, children, ...props}, ref) => {
     const {column: context} = useLayout();
 
     return (
-        <div className={classNames("layout-column", className)} style={{
+        <div ref={ref} className={classNames("layout-column", className)} style={{
             ...props,
             gap: gap ?? context.gap,
             justifyContent: verticalAlignMap[align ?? context.align],
@@ -46,4 +46,4 @@ export function Column({className, align = "top", hAlign = "stretch", gap, style
             {children}
         </div>
     )
-}
+})
