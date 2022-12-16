@@ -1,6 +1,6 @@
 {
   "name": "@enymo/react-layout",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Simple layout library for react.",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
