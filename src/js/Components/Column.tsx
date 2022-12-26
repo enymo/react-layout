@@ -17,7 +17,7 @@ const verticalAlignMap = {
     space: "space-between"
 }
 
-export const Column = forwardRef<HTMLDivElement, {
+export interface ColumnProps {
     className?: string,
     gap?: string,
     flex?: number,
@@ -32,7 +32,9 @@ export const Column = forwardRef<HTMLDivElement, {
     align?: keyof typeof verticalAlignMap,
     hAlign?: keyof typeof horizontalAlignMap,
     children: React.ReactNode
-}>(({className, align = "top", hAlign = "stretch", gap, style, children, ...props}, ref) => {
+}
+
+export const Column = forwardRef<HTMLDivElement, ColumnProps>(({className, align = "top", hAlign = "stretch", gap, style, children, ...props}, ref) => {
     const {column: context} = useLayout();
 
     return (

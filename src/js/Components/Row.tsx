@@ -17,7 +17,7 @@ const verticalAlignMap = {
     stretch: "stretch"
 }
 
-export const Row = forwardRef<HTMLDivElement, {
+interface RowProps {
     className?: string,
     gap?: string,
     flex?: number,
@@ -34,7 +34,9 @@ export const Row = forwardRef<HTMLDivElement, {
     maxHeight?: string,
     style?: React.CSSProperties,
     children: React.ReactNode
-}>(({
+}
+
+export const Row = forwardRef<HTMLDivElement, RowProps>(({
     className,
     align = "left",
     verticalAlign = "stretch",
