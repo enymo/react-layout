@@ -34,7 +34,7 @@ export interface ColumnProps {
     children: React.ReactNode
 }
 
-export const Column = forwardRef<HTMLDivElement, ColumnProps>(({className, align = "top", hAlign = "stretch", gap, style, children, ...props}, ref) => {
+export const Column = forwardRef<HTMLDivElement, ColumnProps>(({className, align, hAlign, gap, style, children, ...props}, ref) => {
     const {column: context} = useLayout();
 
     return (

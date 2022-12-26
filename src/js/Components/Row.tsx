@@ -38,8 +38,8 @@ export interface RowProps {
 
 export const Row = forwardRef<HTMLDivElement, RowProps>(({
     className,
-    align = "left",
-    verticalAlign = "stretch",
+    align,
+    verticalAlign,
     vAlign,
     gap,
     style,
