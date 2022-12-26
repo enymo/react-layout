@@ -17,7 +17,7 @@ const verticalAlignMap = {
     stretch: "stretch"
 }
 
-interface RowProps {
+export interface RowProps {
     className?: string,
     gap?: string,
     flex?: number,
