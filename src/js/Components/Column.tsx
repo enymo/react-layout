@@ -31,10 +31,11 @@ export interface ColumnProps {
     style?: React.CSSProperties,
     align?: keyof typeof verticalAlignMap,
     hAlign?: keyof typeof horizontalAlignMap,
+    wrap?: "nowrap" | "wrap" | "wrap-reverse"
     children: React.ReactNode
 }
 
-export const Column = forwardRef<HTMLDivElement, ColumnProps>(({className, align, hAlign, gap, style, children, ...props}, ref) => {
+export const Column = forwardRef<HTMLDivElement, ColumnProps>(({className, align, hAlign, gap, style, wrap, children, ...props}, ref) => {
     const {column: context} = useLayout();
 
     return (
@@ -43,6 +44,7 @@ export const Column = forwardRef<HTMLDivElement, ColumnProps>(({className, align
             gap: gap ?? context.gap,
             justifyContent: verticalAlignMap[align ?? context.align],
             alignItems: horizontalAlignMap[hAlign ?? context.hAlign],
+            flexWrap: wrap,
             ...style
         }}>
             {children}

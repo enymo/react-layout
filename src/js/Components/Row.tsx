@@ -32,6 +32,7 @@ export interface RowProps {
     minHeight?: string,
     maxWidth?: string,
     maxHeight?: string,
+    wrap?: "nowrap" | "wrap" | "wrap-reverse",
     style?: React.CSSProperties,
     children: React.ReactNode
 }
@@ -42,6 +43,7 @@ export const Row = forwardRef<HTMLDivElement, RowProps>(({
     verticalAlign,
     vAlign,
     gap,
+    wrap,
     style,
     children,
     ...props
@@ -53,6 +55,7 @@ export const Row = forwardRef<HTMLDivElement, RowProps>(({
             gap: gap ?? context.gap,
             justifyContent: alignMap[align ?? context.align],
             alignItems: verticalAlignMap[vAlign ?? verticalAlign ?? context.vAlign],
+            flexWrap: wrap,
             ...props,
             ...style
         }}>
