@@ -1,5 +1,5 @@
 {
-  "name": "@enymo/react-layout",
+  "name": "@enymo-internal/react-layout",
   "version": "1.8.0",
   "description": "Simple layout library for react.",
   "module": "dist/index.mjs",
