@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React, { forwardRef } from "react";
-import { alignMap, useLayout, verticalAlignMap } from "../../common";
+import { alignMap, useLayout, verticalAlignMap } from "../common";
 export interface RowProps {
     className?: string,
     gap?: string,
