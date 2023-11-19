@@ -1,21 +1,6 @@
 import classNames from "classnames";
 import React, { forwardRef } from "react";
-import "../../css/column.css";
-import { useLayout } from "../Hooks/LayoutContext";
-
-const horizontalAlignMap = {
-    left: "flex-start",
-    right: "flex-end",
-    center: "center",
-    stretch: "stretch"
-};
-
-const verticalAlignMap = {
-    top: "flex-start",
-    center: "center",
-    bottom: "flex-end",
-    space: "space-between"
-}
+import { alignMap, horizontalAlignMap, useLayout } from "../../common";
 
 export interface ColumnProps {
     className?: string,
@@ -29,22 +14,35 @@ export interface ColumnProps {
     maxWidth?: string,
     maxHeight?: string,
     style?: React.CSSProperties,
-    align?: keyof typeof verticalAlignMap,
+    align?: keyof typeof alignMap,
     hAlign?: keyof typeof horizontalAlignMap,
     wrap?: "nowrap" | "wrap" | "wrap-reverse"
+    reverse?: boolean,
     children: React.ReactNode
 }
 
-export const Column = forwardRef<HTMLDivElement, ColumnProps>(({className, align, hAlign, gap, style, wrap, children, ...props}, ref) => {
+export const Column = forwardRef<HTMLDivElement, ColumnProps>(({
+    className,
+    align,
+    hAlign,
+    gap,
+    style,
+    wrap,
+    reverse = false,
+    children, 
+    ...props
+}, ref) => {
     const {column: context} = useLayout();
 
     return (
         <div ref={ref} className={classNames("layout-column", className)} style={{
-            ...props,
+            display: "flex",
+            flexDirection: reverse ? "column-reverse" : "column",
             gap: gap ?? context.gap,
-            justifyContent: verticalAlignMap[align ?? context.align],
+            justifyContent: alignMap[align ?? context.align],
             alignItems: horizontalAlignMap[hAlign ?? context.hAlign],
             flexWrap: wrap,
+            ...props,
             ...style
         }}>
             {children}

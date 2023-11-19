@@ -1,30 +1,12 @@
 import classNames from "classnames";
 import React, { forwardRef } from "react";
-import "../../css/row.css";
-import { useLayout } from "../Hooks/LayoutContext";
-
-const alignMap = {
-    left: "flex-start",
-    right: "flex-end",
-    center: "center",
-    space: "space-between"
-};
-
-const verticalAlignMap = {
-    top: "flex-start",
-    center: "center",
-    bottom: "flex-end",
-    stretch: "stretch"
-}
-
+import { alignMap, useLayout, verticalAlignMap } from "../../common";
 export interface RowProps {
     className?: string,
     gap?: string,
     flex?: number,
-    align?: "left" | "right" | "center" | "space",
-    /** @deprecated Use vAlign instead */
-    verticalAlign?: "top" | "center" | "bottom" | "stretch",
-    vAlign?: "top" | "center" | "bottom" | "stretch",
+    align?: keyof typeof alignMap,
+    vAlign?: keyof typeof verticalAlignMap,
     padding?: string,
     width?: string,
     height?: string,
@@ -33,6 +15,7 @@ export interface RowProps {
     maxWidth?: string,
     maxHeight?: string,
     wrap?: "nowrap" | "wrap" | "wrap-reverse",
+    reverse?: boolean,
     style?: React.CSSProperties,
     children: React.ReactNode
 }
@@ -40,10 +23,10 @@ export interface RowProps {
 export const Row = forwardRef<HTMLDivElement, RowProps>(({
     className,
     align,
-    verticalAlign,
     vAlign,
     gap,
     wrap,
+    reverse = false,
     style,
     children,
     ...props
@@ -52,9 +35,11 @@ export const Row = forwardRef<HTMLDivElement, RowProps>(({
 
     return (
         <div ref={ref} className={classNames("layout-row", className)} style={{
+            display: "flex",
+            flexDirection: reverse ? "row-reverse" : "row",
             gap: gap ?? context.gap,
             justifyContent: alignMap[align ?? context.align],
-            alignItems: verticalAlignMap[vAlign ?? verticalAlign ?? context.vAlign],
+            alignItems: verticalAlignMap[vAlign ?? context.vAlign],
             flexWrap: wrap,
             ...props,
             ...style
