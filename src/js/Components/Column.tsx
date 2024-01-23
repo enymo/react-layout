@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React, { forwardRef } from "react";
-import { alignMap, horizontalAlignMap, useLayout } from "../common";
+import { alignMap, horizontalAlignMap, selfAlignMap, useLayout } from "../common";
 
 export interface ColumnProps {
     className?: string,
@@ -15,6 +15,7 @@ export interface ColumnProps {
     maxHeight?: string,
     style?: React.CSSProperties,
     align?: keyof typeof alignMap,
+    selfAlign?: keyof typeof selfAlignMap,
     hAlign?: keyof typeof horizontalAlignMap,
     wrap?: "nowrap" | "wrap" | "wrap-reverse"
     reverse?: boolean,
@@ -24,6 +25,7 @@ export interface ColumnProps {
 export const Column = forwardRef<HTMLDivElement, ColumnProps>(({
     className,
     align,
+    selfAlign,
     hAlign,
     gap,
     style,
@@ -41,6 +43,7 @@ export const Column = forwardRef<HTMLDivElement, ColumnProps>(({
             gap: gap ?? context.gap,
             justifyContent: alignMap[align ?? context.align],
             alignItems: horizontalAlignMap[hAlign ?? context.hAlign],
+            alignSelf: selfAlign ? selfAlignMap[selfAlign] : undefined,
             flexWrap: wrap,
             ...props,
             ...style

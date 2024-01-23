@@ -21,6 +21,13 @@ export const verticalAlignMap = {
     stretch: "stretch"
 };
 
+export const selfAlignMap = {
+    start: "flex-start",
+    end: "flex-end",
+    center: "center",
+    stretch: "stretch"
+}
+
 export const [LayoutProvider, useLayout] = createContext<{
     row: {
         gap?: string,

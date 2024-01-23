@@ -1,11 +1,12 @@
 import classNames from "classnames";
 import React, { forwardRef } from "react";
-import { alignMap, useLayout, verticalAlignMap } from "../common";
+import { alignMap, selfAlignMap, useLayout, verticalAlignMap } from "../common";
 export interface RowProps {
     className?: string,
     gap?: string,
     flex?: number,
     align?: keyof typeof alignMap,
+    selfAlign?: keyof typeof selfAlignMap,
     vAlign?: keyof typeof verticalAlignMap,
     padding?: string,
     width?: string,
@@ -23,6 +24,7 @@ export interface RowProps {
 export const Row = forwardRef<HTMLDivElement, RowProps>(({
     className,
     align,
+    selfAlign,
     vAlign,
     gap,
     wrap,
@@ -40,6 +42,7 @@ export const Row = forwardRef<HTMLDivElement, RowProps>(({
             gap: gap ?? context.gap,
             justifyContent: alignMap[align ?? context.align],
             alignItems: verticalAlignMap[vAlign ?? context.vAlign],
+            alignSelf: selfAlign ? selfAlignMap[selfAlign] : undefined,
             flexWrap: wrap,
             ...props,
             ...style
