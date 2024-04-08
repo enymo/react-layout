@@ -5,7 +5,7 @@ import { alignMap, horizontalAlignMap, selfAlignMap, useLayout } from "../common
 export interface ColumnProps {
     className?: string,
     gap?: string,
-    flex?: number,
+    flex?: number | string,
     padding?: string,
     width?: string,
     height?: string,
@@ -27,6 +27,7 @@ export const Column = forwardRef<HTMLDivElement, ColumnProps>(({
     align,
     selfAlign,
     hAlign,
+    flex = "none",
     gap,
     style,
     wrap,
@@ -44,6 +45,7 @@ export const Column = forwardRef<HTMLDivElement, ColumnProps>(({
             justifyContent: alignMap[align ?? context.align],
             alignItems: horizontalAlignMap[hAlign ?? context.hAlign],
             alignSelf: selfAlign ? selfAlignMap[selfAlign] : undefined,
+            flex,
             flexWrap: wrap,
             ...props,
             ...style

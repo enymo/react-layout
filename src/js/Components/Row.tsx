@@ -4,7 +4,7 @@ import { alignMap, selfAlignMap, useLayout, verticalAlignMap } from "../common";
 export interface RowProps {
     className?: string,
     gap?: string,
-    flex?: number,
+    flex?: number | string,
     align?: keyof typeof alignMap,
     selfAlign?: keyof typeof selfAlignMap,
     vAlign?: keyof typeof verticalAlignMap,
@@ -26,6 +26,7 @@ export const Row = forwardRef<HTMLDivElement, RowProps>(({
     align,
     selfAlign,
     vAlign,
+    flex = "none",
     gap,
     wrap,
     reverse = false,
@@ -43,6 +44,7 @@ export const Row = forwardRef<HTMLDivElement, RowProps>(({
             justifyContent: alignMap[align ?? context.align],
             alignItems: verticalAlignMap[vAlign ?? context.vAlign],
             alignSelf: selfAlign ? selfAlignMap[selfAlign] : undefined,
+            flex,
             flexWrap: wrap,
             ...props,
             ...style
